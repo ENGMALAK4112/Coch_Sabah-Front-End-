@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WELL-BING with COACH SABAH</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #d3c3a7;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    }
+
+#ball-container {
+    pointer-events: none; /* عشان ما يمنع الضغط على المحتوى */
+    z-index: 50;          /* فوق المحتوى */
+  }
+
+  .ball {
+    position: absolute;
+    background-color: #ccc;
+    background-size: cover;
+    border-radius: 50%;
+    transition: transform 0.4s ease-in-out;
+    cursor: pointer;
+    pointer-events: auto; /* تخلي الكرات تستقبل hover */
+  }
+
+  /* أحجام الكرات */
+  .ball.small { width: 15px; height: 15px; }
+  .ball.medium { width: 20px; height: 20px; }
+  .ball.large { width: 24px; height: 24px; }
+
+  /* حركة القفز */
+  @keyframes bounceEffect {
+    0% { transform: translateY(0); }
+    30% { transform: translateY(-10px); }
+    60% { transform: translateY(5px); }
+    100% { transform: translateY(0); }
+  }
+
+  /* تطبيق الحركة عند تمرير الماوس */
+  .ball:hover {
+    animation: bounceEffect 0.6s ease-in-out;
+  }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      margin-top: 0.5rem;
+      width: 12rem;
+      background-color: #d3c3a7;
+      border-radius: 0.375rem;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      z-index: 50;
+    }
+
+    .dropdown-menu.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-button {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .dropdown-button.active svg {
+      transform: rotate(180deg);
+      transition: transform 0.3s ease;
+    }
+    .text-teal-900-custom {
+            color: #073B3A;
+    }
+    .bg-teal-900-custom {
+            background-color: #073B3A;
+    }
+    .bg-teal-900-light {
+            background-color: #073B3A;
+    }
+  </style>
+</head>
+<body class="relative min-h-screen">
+
+<nav class="relative z-20 flex justify-between items-center py-4 px-8 border-b-2 border-gray-300 border-opacity-30">
+  <div class="flex items-center space-x-2">
+    <img src="/images/logo.png" alt="شعار WELL-BING" class="w-8 h-8">
+    <div class="flex flex-col items-start">
+      <span class="font-serif text-lg font-bold text-[#073B3A]">WELL-BEING</span>
+      <span class="font-serif text-sm text-[#073B3A]">WITH COACH SABAH</span>
+    </div>
+  </div>
+
+  <ul class="flex space-x-8 text-[#073B3A]">
+    <li><a href="index.html" class="hover:border-b-2 hover:border-gray-800">Home</a></li>
+    <li><a href="aboutme.html" class="hover:border-b-2 hover:border-gray-800">About</a></li>
+
+    <li class="relative dropdown">
+      <div class="dropdown-button" tabindex="0">
+        <span><a href="services.html" class="pb-2 border-b-2 border-gray-800 font-semibold">Our Services</a></span>
+        <svg class="w-4 h-4 ml-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+      </div>
+      <ul class="dropdown-menu">
+        <li><a href="Coaching.html" class="block px-4 py-2 hover:bg-gray-300">Coaching Programs</a></li>
+        <li><a href="Training.html" class="block px-4 py-2 hover:bg-gray-300">Training Programs</a></li>
+        <li><a href="Contact.html" class="block px-4 py-2 hover:bg-gray-300">Contact Us</a></li>
+      </ul>
+    </li>
+
+    <li><a href="book.html" class="hover:border-b-2 hover:border-gray-800">My Book</a></li>
+    <li><a href="client.html" class="hover:border-b-2 hover:border-gray-800">Client's Testimony</a></li>
+    <li><a href="contactus.html" class="hover:border-b-2 hover:border-gray-800">Contact Us</a></li>
+  </ul>
+</nav>
+
+  <!-- البلورات -->
+<div class="absolute inset-0 z-0" id="ball-container">
+  <!-- 🔵 أعلى-يسار -->
+  <img src="/images/blue.png" class="ball medium" style="top: 18%; left: 18%;">
+  <!-- 🔵 أعلى-منتصف يسار -->
+  <img src="/images/blue.png" class="ball small" style="top: 14%; left: 10%;">
+  <!-- 🔵 منتصف يسار -->
+  <img src="/images/blue.png" class="ball medium" style="top: 45%; left: 10%;">
+  <!-- 🔵 أسفل-يسار -->
+  <img src="/images/blue.png" class="ball small" style="top: 80%; left: 22%;">
+  <!-- 🔵 أعلى-يمين -->
+  <img src="/images/blue.png" class="ball medium" style="top: 20%; right: 20%;">
+  <!-- 🔵 وسط يمين -->
+  <img src="/images/blue.png" class="ball small" style="top: 55%; right: 12%;">
+  <!-- 🔵 أسفل-يمين -->
+  <img src="/images/blue.png" class="ball medium" style="top: 82%; right: 20%;">
+  <img src="/images/yello.png" class="ball medium" style="top: 72%; right: 20%;">
+  <!-- 🔵 قريب من الزاوية اليمنى السفلية -->
+  <img src="/images/blue.png" class="ball small" style="top: 30%; right: 5%;">
+
+  <!-- 🟡 أعلى يمين -->
+  <img src="/images/yello.png" class="ball small" style="top: 15%; right: 10%;">
+  <!-- 🟡 أسفل يسار -->
+  <img src="/images/yello.png" class="ball small" style="top: 65%; left: 20%;">
+  <!-- 🟡 أسفل يسار جدًا -->
+  <img src="/images/yello.png" class="ball medium" style="top: 90%; left: 8%;">
+  <!-- 🟡 أسفل يمين -->
+  <img src="/images/yello.png" class="ball small" style="top: 70%; right: 8%;">
+  <!-- 🟡 منتصف أعلى يسار -->
+  <img src="/images/yello.png" class="ball small" style="top: 30%; left: 85%;">
+  <!-- 🟡 منتصف أعلى يمين -->
+  <img src="/images/yello.png" class="ball small" style="top: 45%; right: 20%;">
+
+  <!-- 🟡 بلورات مخصصة للـ About -->
+  <!-- 🟡 أعلى-منتصف (about) -->
+  <img src="/images/yello.png" class="ball small" style="top: 30%; left: 10%;">
+  <!-- 🟡 منتصف تمامًا (about) -->
+  <img src="/images/yello.png" class="ball small" style="top: 45%; right: 80%;">
+  <!-- 🟡 أسفل المنتصف (about) -->
+  <img src="/images/yello.png" class="ball small" style="top: 68%; left: 10%;">
+
+  
+
+  <!-- 🔵 منتصف يمين (about) -->
+  <img src="/images/blue.png" class="ball medium" style="top: 52%; left: 80%;">
+</div>
+
+
+ <!-- Main Content -->
+    <main class=" font-serif text-[#073B3A] flex-grow flex items-center justify-center pt-24 pb-12">
+        <div class="container mx-auto p-8 max-w-2xl bg-custom-brown/80 backdrop-blur-sm rounded-xl shadow-lg">
+            <h1 class="text-center text-3xl mb-8 text-custom-dark-green">Couching Session Registration</h1>
+
+            <!-- Registration Form -->
+            <form id="registrationForm" class="space-y-6">
+
+                <!-- Full Name -->
+                <div>
+                    <label for="fullName" class="block text-sm font-medium text-custom-dark-green">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" placeholder="write your name...." class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-custom-dark-green focus:border-custom-dark-green sm:text-sm">
+                </div>
+
+                <!-- Email -->
+                <div>
+                    <label for="email" class="block text-sm font-medium text-custom-dark-green">E-mail</label>
+                    <input type="email" id="email" name="email" placeholder="write your email...." class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-custom-dark-green focus:border-custom-dark-green sm:text-sm">
+                </div>
+
+<!-- Country/City -->
+<div>
+  <label class="block text-sm font-medium text-custom-dark-green">
+    Country\city of resident
+  </label>
+  <div class="mt-1 grid grid-cols-2 gap-4">
+    
+    <!-- Country select -->
+    <select id="country" name="country"
+      class="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-custom-dark-green focus:border-custom-dark-green sm:text-sm text-gray-400"
+      onchange="this.classList.remove('text-gray-400')"
+    >
+      <option disabled selected>select the country</option>
+      <option class="text-black">Yemen</option>
+      <option class="text-black">Saudi Arabia</option>
+      <option class="text-black">UAE</option>
+    </select>
+    
+    <!-- City select -->
+    <select id="city" name="city"
+      class="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-custom-dark-green focus:border-custom-dark-green sm:text-sm text-gray-400"
+      onchange="this.classList.remove('text-gray-400')"
+    >
+      <option disabled selected>select the city</option>
+      <option class="text-black">Sana'a</option>
+      <option class="text-black">Aden</option>
+      <option class="text-black">Riyadh</option>
+    </select>
+    
+  </div>
+</div>
+
+                <!-- Preferred Date/Time -->
+                <div lang="en">
+                    <label class="block text-sm font-medium text-custom-dark-green">Preferred Date\Time of resident</label>
+                    <div class="mt-1 grid grid-cols-2 gap-4">
+                        <div class="relative">
+                            <input type="date" id="preferredDate" name="preferredDate" class="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-custom-dark-green focus:border-custom-dark-green sm:text-sm">
+                        </div>
+                        <div class="relative">
+                            <input type="time" id="preferredTime" name="preferredTime" class="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-custom-dark-green focus:border-custom-dark-green sm:text-sm">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WhatsApp Number -->
+                <div>
+                    <label for="whatsappNumber" class="block text-sm font-medium text-custom-dark-green">WhatsApp Number</label>
+                    <div class="mt-1 flex rounded-md shadow-sm">
+                        <select class="px-3 py-2 border border-gray-300 rounded-l-md bg-gray-50 focus:ring-custom-dark-green focus:border-custom-dark-green">
+                            <option>+967</option>
+                            <option>+966</option>
+                        </select>
+                        <input type="tel" id="whatsappNumber" name="whatsappNumber" placeholder="enter your WhatsApp number ..." class="flex-1 block w-full px-4 py-2 border border-gray-300 rounded-r-md focus:ring-custom-dark-green focus:border-custom-dark-green sm:text-sm">
+                    </div>
+                </div>
+
+                <!-- Preferred Contact Method -->
+                <div>
+                    <label class="block text-sm font-medium text-custom-dark-green">Preferred Contact Method</label>
+                    <div class="mt-2 flex items-center space-x-6">
+                        <div class="flex items-center space-x-2">
+                            <input id="whatsapp" name="contactMethod" type="radio" class="focus:ring-custom-dark-green h-4 w-4 text-custom-dark-green border-gray-300">
+                            <label for="whatsapp" class="text-sm font-medium text-custom-dark-green">
+                                <span class="flex items-center space-x-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2.1c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.44 1.34 4.93L2.09 22l5.03-1.32c1.45.79 3.09 1.21 4.92 1.21 5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.91-9.91zM17.48 16.5c-.17.41-.95.83-1.39.83-.44 0-.75-.22-1.46-.7-.71-.48-2.77-1.36-3.23-1.52-.46-.16-.79-.17-.91.17-.12.35-.46 1.36-.59 1.52-.14.16-.27.18-.51.07-.24-.12-1.02-.38-1.95-1.19-.72-.61-1.2-1.35-1.35-1.59-.14-.24-.01-.37.13-.5.12-.12.27-.29.41-.46.14-.17.18-.32.26-.48.08-.16.04-.3-.02-.45-.06-.15-.59-1.42-.81-1.92-.22-.5-.44-.43-.6-.43-.16 0-.34 0-.52 0-.17 0-.46.06-.7.29-.24.22-.91.88-.91 2.13 0 1.25.93 2.47 1.06 2.64.13.17 1.83 2.82 4.41 3.96 2.58 1.14 2.58.74 2.88.7.3-.05 1.4-.56 1.6-1.12.2-.56.2-.95.14-1.05-.06-.1-.17-.15-.35-.25z"/></svg>
+                                    WhatsApp
+                                </span>
+                            </label>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <input id="instagram" name="contactMethod" type="radio" class="focus:ring-custom-dark-green h-4 w-4 text-custom-dark-green border-gray-300">
+                            <label for="instagram" class="text-sm font-medium text-custom-dark-green">
+                                <span class="flex items-center space-x-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-pink-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c2.716 0 3.056.012 4.122.06 1.065.048 1.792.21 2.417.456.64.254 1.168.618 1.697 1.146.529.529.893 1.057 1.146 1.697.245.625.408 1.352.456 2.417.048 1.066.06 1.406.06 4.122s-.012 3.056-.06 4.122c-.048 1.065-.21 1.792-.456 2.417-.254.64-.618 1.168-1.146 1.697-.529.529-1.057.893-1.697 1.146-.625.245-1.352.408-2.417.456-1.066.048-1.406.06-4.122.06s-3.056-.012-4.122-.06c-1.065-.048-1.792-.21-2.417-.456-.64-.254-1.168-.618-1.697-1.146-.529-.529-.893-1.057-1.146-1.697-.245-.625-.408-1.352-.456-2.417-.048-1.066-.06-1.406-.06-4.122s.012-3.056.06-4.122c.048-1.065.21-1.792.456-2.417.254-.64.618-1.168 1.146-1.697.529-.529 1.057-.893 1.697-1.146.625-.245 1.352-.408 2.417-.456C8.944 2.012 9.284 2 12 2zm0 2.222c-2.667 0-2.955.012-4.004.058-1.047.047-1.618.2-1.996.353-.4.155-.747.373-1.076.702-.329.329-.547.676-.702 1.076-.153.378-.306.949-.353 1.996-.046 1.049-.058 1.337-.058 4.004s.012 2.955.058 4.004c.047 1.047.2 1.618.353 1.996.155.4.373.747.702 1.076.329.329.676.547 1.076.702.378.153.949.306 1.996.353 1.049.046 1.337.058 4.004.058s2.955-.012 4.004-.058c1.047-.047 1.618-.2 1.996-.353.4-.155.747-.373 1.076-.702.329-.329.547-.676.702-1.076.153-.378.306-.949.353-1.996.046-1.049.058-1.337.058-4.004s-.012-2.955-.058-4.004c-.047-1.047-.2-1.618-.353-1.996-.155-.4-.373-.747-.702-1.076-.329-.329-.676-.547-1.076-.702-.378-.153-.949-.306-1.996-.353C14.955 4.234 14.667 4.222 12 4.222zm0 2.222c3.084 0 5.666 2.457 5.666 5.667s-2.582 5.667-5.666 5.667-5.667-2.457-5.667-5.667 2.583-5.667 5.667-5.667zm0 1.968c-2.046 0-3.699 1.653-3.699 3.699s1.653 3.699 3.699 3.699 3.699-1.653 3.699-3.699-1.653-3.699-3.699-3.699zM18.423 6.425c-.503 0-.91.407-.91.91s.407.91.91.91.91-.407.91-.91-.407-.91-.91-.91z"/></svg>
+                                    Instagram
+                                </span>
+                            </label>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <input id="facebook" name="contactMethod" type="radio" class="focus:ring-custom-dark-green h-4 w-4 text-custom-dark-green border-gray-300">
+                            <label for="facebook" class="text-sm font-medium text-custom-dark-green">
+                                <span class="flex items-center space-x-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-blue-600" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm2.146 7.426l-.915 5.565c-.066.402-.387.696-.788.696-.134 0-.27-.035-.399-.107l-2.07-.96-.45.451-2.924 1.353c-.314.146-.666.155-.986.027l.142-.647 1.109-5.114c.058-.266-.02-.544-.226-.749-.206-.205-.484-.283-.75-.225l-2.923.634 1.11-5.115c.058-.266.302-.451.57-.451h4.225c.34 0 .615.275.615.615s-.275.615-.615.615h-3.411l-.81 3.731.422-.195c.29-.134.618-.134.908 0l4.316 2.012c.162.076.275.228.307.404z"/></svg>
+                                    Facebook
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+<select id="preferredLanguage" name="preferredLanguage"
+  class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-custom-dark-green focus:border-custom-dark-green sm:text-sm text-gray-400"
+  onchange="this.classList.remove('text-gray-400')"
+>
+  <option disabled selected>select the preferred language...</option>
+  <option class="text-black">English</option>
+  <option class="text-black">Arabic</option>
+</select>
+<!-- Online / In Person -->
+<div>
+    <label for="sessionType" class="block text-sm font-medium text-custom-dark-green">Online \ In person</label>
+    <select id="sessionType" name="sessionType"
+        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-custom-dark-green focus:border-custom-dark-green sm:text-sm text-gray-400"
+        onchange="this.classList.remove('text-gray-400')"
+    >
+        <option disabled selected>select the preferred language...</option>
+        <option class="text-black">Online</option>
+        <option class="text-black">In person</option>
+    </select>
+</div>
+
+                <!-- Payment Method -->
+                <div>
+                    <label class="block text-sm font-medium text-custom-dark-green">Payment Method</label>
+                    <div class="mt-2 flex flex-wrap items-center space-x-6">
+                        <div class="flex items-center space-x-2">
+                            <input id="paypal" name="paymentMethod" type="radio" class="focus:ring-custom-dark-green h-4 w-4 text-custom-dark-green border-gray-300">
+                            <label for="paypal" class="text-sm font-medium text-custom-dark-green">
+                                <span class="flex items-center space-x-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-blue-700" viewBox="0 0 24 24" fill="currentColor"><path d="M2.51 16.5c-1.39 0-2.51-1.12-2.51-2.51v-7.98c0-1.39 1.12-2.51 2.51-2.51h15.98c1.39 0 2.51 1.12 2.51 2.51v7.98c0 1.39-1.12 2.51-2.51 2.51h-15.98zM5.52 7.79c-.73 0-1.32.59-1.32 1.32s.59 1.32 1.32 1.32h5.68c.73 0 1.32-.59 1.32-1.32s-.59-1.32-1.32-1.32h-5.68zM5.52 12.35c-.73 0-1.32.59-1.32 1.32s.59 1.32 1.32 1.32h2.95c.73 0 1.32-.59 1.32-1.32s-.59-1.32-1.32-1.32h-2.95z"/></svg>
+                                    Paypal
+                                </span>
+                            </label>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <input id="creditCard1" name="paymentMethod" type="radio" class="focus:ring-custom-dark-green h-4 w-4 text-custom-dark-green border-gray-300">
+                            <label for="creditCard1" class="text-sm font-medium text-custom-dark-green">
+                                <span class="flex items-center space-x-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-700" viewBox="0 0 24 24" fill="currentColor"><path d="M19 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm-1 9H6v-2h12v2zm0-4H6V6h12v3z"/></svg>
+                                    Credit card
+                                </span>
+                            </label>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <input id="creditCard2" name="paymentMethod" type="radio" class="focus:ring-custom-dark-green h-4 w-4 text-custom-dark-green border-gray-300">
+                            <label for="creditCard2" class="text-sm font-medium text-custom-dark-green">
+                                <span class="flex items-center space-x-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-yellow-500" viewBox="0 0 24 24" fill="currentColor"><path d="M19 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm-1 9H6v-2h12v2zm0-4H6V6h12v3z"/></svg>
+                                    Credit card
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Register Button -->
+                <div class="pt-4">
+                    <button type="submit" class="bg-[#073B3A] text-white w-full px-4 py-2 rounded-md">
+                        Register Now!
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+        <!-- Footer -->
+        <footer class="bg-teal-900-custom text-white py-6 mt-8">
+            <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-sm">
+                <div class="flex items-center mb-4 md:mb-0 space-x-2">
+                    <!-- Location Icon SVG -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.686 2 6 4.686 6 8c0 4.29 4.316 9.25 6 12.875 1.684-3.625 6-8.585 6-12.875 0-3.314-2.686-6-6-6zm0 10.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    <span>Hyderabad, India</span>
+                </div>
+                <div class="flex items-center mb-4 md:mb-0 space-x-2">
+                    <!-- Phone Icon SVG -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.61-.34-.12-.72-.03-1.01.24l-2.22 2.22c-2.83-1.44-5.15-3.76-6.59-6.59l2.22-2.22c.28-.28.36-.66.24-1.01C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
+                    <span>777 777 7777</span>
+                </div>
+                <div class="flex items-center mb-4 md:mb-0 space-x-2">
+                    <!-- Facebook Icon SVG -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.04c-5.464 0-9.9 4.436-9.9 9.9 0 5.163 3.879 9.42 8.96 9.917V14.88h-3.414v-2.942h3.414V9.664c0-3.398 2.078-5.26 5.109-5.26 1.45 0 2.686.108 3.048.156v2.54h-1.507c-1.492 0-1.782.709-1.782 1.745v2.296h3.292l-.532 2.942h-2.76V21.957C18.021 21.46 21.9 17.203 21.9 12.04c0-5.464-4.436-9.9-9.9-9.9z"/></svg>
+                    <span>@coachSabah</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <!-- Instagram Icon SVG -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.02c-3.31 0-3.72-.01-5.04-.07-1.3-.06-2.2-.27-3.01-.58-.81-.31-1.48-.79-2.17-1.48C.28 2.21-.2 2.88-.51 3.69-.83 4.5-.9 5.4-.96 6.72-.99 8.04-1 8.45-1 11.76s.01 3.71.07 5.03c.06 1.3.27 2.2.58 3.01.31.81.79 1.48 1.48 2.17.69.69 1.36 1.17 2.17 1.48.81.31 1.71.52 3.01.58 1.32.06 1.73.07 5.04.07s3.72-.01 5.04-.07c1.3-.06 2.2-.27 3.01-.58.81-.31 1.48-.79 2.17-1.48.69-.69 1.17-1.36 1.48-2.17.31-.81.52-1.71.58-3.01.06-1.32.07-1.73.07-5.04s-.01-3.72-.07-5.04c-.06-1.3-.27-2.2-.58-3.01-.31-.81-.79-1.48-1.48-2.17-.69-.69-1.36-1.17-2.17-1.48-.81-.31-1.71-.52-3.01-.58-1.32-.06-1.73-.07-5.04-.07zM12 20.24c-4.55 0-8.24-3.69-8.24-8.24s3.69-8.24 8.24-8.24 8.24 3.69 8.24 8.24-3.69 8.24-8.24 8.24zm0-13.48c-2.89 0-5.24 2.35-5.24 5.24s2.35 5.24 5.24 5.24 5.24-2.35 5.24-5.24-2.35-5.24-5.24-5.24zm4.45 1.55c.61 0 1.11.5 1.11 1.11s-.5 1.11-1.11 1.11-1.11-.5-1.11-1.11.5-1.11 1.11-1.11z"/></svg>
+                    <span>@coachSabah</span>
+                </div>
+            </div>
+        </footer>
+
+ 
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const dropdownBtn = document.querySelector('.dropdown-button');
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+
+    dropdownBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dropdownMenu.classList.toggle('active');
+      dropdownBtn.classList.toggle('active');
+    });
+
+    document.addEventListener('click', () => {
+      dropdownMenu.classList.remove('active');
+      dropdownBtn.classList.remove('active');
+    });
+
+    dropdownMenu.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+  });
+</script>
+
+</body>
+</html>

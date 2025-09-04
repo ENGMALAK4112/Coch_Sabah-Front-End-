@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WELL-BEING with COACH SABAH</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #d3c3a7;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    }
+
+    #ball-container {
+    pointer-events: none; /* عشان ما يمنع الضغط على المحتوى */
+    z-index: 50;          /* فوق المحتوى */
+  }
+
+  .ball {
+    position: absolute;
+    background-color: #ccc;
+    background-size: cover;
+    border-radius: 50%;
+    transition: transform 0.4s ease-in-out;
+    cursor: pointer;
+    pointer-events: auto; /* تخلي الكرات تستقبل hover */
+  }
+
+  /* أحجام الكرات */
+  .ball.small { width: 15px; height: 15px; }
+  .ball.medium { width: 20px; height: 20px; }
+  .ball.large { width: 24px; height: 24px; }
+
+  /* حركة القفز */
+  @keyframes bounceEffect {
+    0% { transform: translateY(0); }
+    30% { transform: translateY(-10px); }
+    60% { transform: translateY(5px); }
+    100% { transform: translateY(0); }
+  }
+
+  /* تطبيق الحركة عند تمرير الماوس */
+  .ball:hover {
+    animation: bounceEffect 0.6s ease-in-out;
+  }
+
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      margin-top: 0.5rem;
+      width: 12rem;
+      background-color: #d3c3a7;
+      border-radius: 0.375rem;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      z-index: 50;
+    }
+
+    .dropdown-menu.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-button {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .dropdown-button.active svg {
+      transform: rotate(180deg);
+      transition: transform 0.3s ease;
+    }
+  </style>
+</head>
+<body class="relative min-h-screen">
+
+  <nav class="relative z-20 flex justify-between items-center py-4 px-8 border-b-2 border-gray-300 border-opacity-30">
+    <div class="flex items-center space-x-2">
+      <img src="/images/logo.png" alt="شعار WELL-BING" class="w-8 h-8">
+      <div class="flex flex-col items-start">
+        <span class="font-serif text-lg font-bold text-[#073B3A]">WELL-BEING</span>
+        <span class="font-serif text-sm text-[#073B3A]">WITH COACH SABAH</span>
+      </div>
+    </div>
+  
+    <ul class="flex space-x-8 text-[#073B3A]">
+      <li><a href="index.html" class="hover:border-b-2 hover:border-gray-800">Home</a></li>
+      <li><a href="aboutme.html" class="pb-2 border-b-2 border-gray-800 font-semibold">About</a></li>
+  
+      <li class="relative dropdown">
+        <div class="dropdown-button" tabindex="0">
+          <span><a href="services.html">Our Services</a></span>
+          <svg class="w-4 h-4 ml-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+        </div>
+        <ul class="dropdown-menu">
+          <li><a href="Coaching.html" class="block px-4 py-2 hover:bg-gray-300">Coaching Programs</a></li>
+          <li><a href="Training.html" class="block px-4 py-2 hover:bg-gray-300">Training Programs</a></li>
+          <li><a href="Contact.html" class="block px-4 py-2 hover:bg-gray-300">Contact Us</a></li>
+        </ul>
+      </li>
+  
+      <li><a href="book.html" class="hover:border-b-2 hover:border-gray-800">My Book</a></li>
+      <li><a href="client.html" class="hover:border-b-2 hover:border-gray-800">Client's Testimony</a></li>
+      <li><a href="contactus.html" class="hover:border-b-2 hover:border-gray-800">Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <!-- البلورات -->
+  <div class="absolute inset-0 z-0" id="ball-container">
+    <img src="/images/blue.png" class="ball medium" style="top: 18%; left: 18%;">
+    <img src="/images/blue.png" class="ball small" style="top: 14%; left: 33%;">
+    <img src="/images/blue.png" class="ball medium" style="top: 45%; left: 10%;">
+    <img src="/images/blue.png" class="ball small" style="top: 80%; left: 22%;">
+    <img src="/images/blue.png" class="ball medium" style="top: 20%; right: 20%;">
+
+    <img src="/images/blue.png" class="ball medium" style="top: 82%; right: 30%;">
+    <img src="/images/blue.png" class="ball small" style="top: 30%; right: 5%;">
+
+    <img src="/images/yello.png" class="ball small" style="top: 10%; left: 50%;">
+    <img src="/images/yello.png" class="ball small" style="top: 15%; right: 38%;">
+    <img src="/images/yello.png" class="ball small" style="top: 65%; left: 20%;">
+    <img src="/images/yello.png" class="ball medium" style="top: 90%; left: 8%;">
+    <img src="/images/yello.png" class="ball medium" style="bottom: 5%; right: 45%;">
+    <img src="/images/yello.png" class="ball small" style="top: 70%; right: 8%;">
+    <img src="/images/yello.png" class="ball small" style="top: 30%; left: 38%;">
+    
+
+    <!-- بلورات مخصصة للـ About -->
+    <img src="/images/yello.png" class="ball small" style="top: 20%; left: 55%;">
+ 
+    <img src="/images/yello.png" class="ball small" style="top: 68%; left: 45%;">
+    <img src="/images/blue.png" class="ball small" style="top: 75%; left: 60%;">
+    <img src="/images/blue.png" class="ball small" style="top: 30%; left: 40%;">
+
+  </div>
+
+  <!-- محتوى الصفحة -->
+  <section class="relative z-10 px-10 py-24 flex flex-col md:flex-row justify-center gap-16">
+    <!-- صور الجانب الأيسر -->
+    <div class="relative w-full max-w-[400px] flex flex-col justify-between">
+      <img src="/images/walk.png" alt="Image 1" class="w-[250px] h-[250px] object-cover rounded-md shadow-lg ml-0">
+      <img src="/images/per.png" alt="Image 2" class="absolute top-[30%] left-[150px] w-[220px] h-[220px] object-cover rounded-md shadow-xl z-20">
+      <img src="/images/hed.png" alt="Image 3" class="w-[250px] h-[250px] object-cover rounded-md shadow-lg mt-2">
+    </div>
+
+    <!-- نص اليمين -->
+    <div class="max-w-xl text-gray-800">
+      <h2 class="text-4xl font-serif text-[#083c3b] mb-6">About</h2>
+      <p class="text-base leading-relaxed">
+        My name is Sabah Derhem, and I am a certified life coach and trainer. I am committed to helping individuals achieve their personal and spiritual growth by providing a non-judgmental and supportive environment. I believe in working holistically with clients to identify and address any limiting beliefs, behavior patterns, and negative self-talk to facilitate growth and transformation. My approach is tailored to each client's unique needs and preferences, and I strive to empower individuals to take control of their lives and achieve their full potential. My mission as a life coach is to help you become the best version of yourself. Through one-on-one coaching sessions, we will identify areas of your life where you may feel stuck, and work together to create a personalized roadmap to success.
+      </p>
+    </div>
+  </section>
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const dropdownBtn = document.querySelector('.dropdown-button');
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+
+    dropdownBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dropdownMenu.classList.toggle('active');
+      dropdownBtn.classList.toggle('active');
+    });
+
+    document.addEventListener('click', () => {
+      dropdownMenu.classList.remove('active');
+      dropdownBtn.classList.remove('active');
+    });
+
+    dropdownMenu.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+  });
+</script>
+
+</body>
+</html>

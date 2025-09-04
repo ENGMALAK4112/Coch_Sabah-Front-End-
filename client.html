@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Client's Testimony - WELL-BEING</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    body {
+      background-color: #d3c3a7;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    }
+
+    #ball-container {
+    pointer-events: none; /* عشان ما يمنع الضغط على المحتوى */
+    z-index: 50;          /* فوق المحتوى */
+  }
+
+  .ball {
+    position: absolute;
+    background-color: #ccc;
+    background-size: cover;
+    border-radius: 50%;
+    transition: transform 0.4s ease-in-out;
+    cursor: pointer;
+    pointer-events: auto; /* تخلي الكرات تستقبل hover */
+  }
+
+  /* أحجام الكرات */
+  .ball.small { width: 15px; height: 15px; }
+  .ball.medium { width: 20px; height: 20px; }
+  .ball.large { width: 24px; height: 24px; }
+
+  /* حركة القفز */
+  @keyframes bounceEffect {
+    0% { transform: translateY(0); }
+    30% { transform: translateY(-10px); }
+    60% { transform: translateY(5px); }
+    100% { transform: translateY(0); }
+  }
+
+  /* تطبيق الحركة عند تمرير الماوس */
+  .ball:hover {
+    animation: bounceEffect 0.6s ease-in-out;
+  }
+
+
+    .slider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      overflow: hidden;
+      margin: 3rem auto;
+      max-width: 1100px;
+      position: relative;
+      z-index: 20;
+    }
+
+    .slide {
+      flex-shrink: 0;
+      transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+      opacity: 1;
+      transform: scale(0.85);
+    }
+
+    .slide.active {
+      transform: scale(1);
+      opacity: 1;
+      z-index: 10;
+    }
+
+    .slider img {
+      border-radius: 0.5rem;
+      width: 300px;
+      height: auto;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .slider img.active {
+      width: 400px;
+    }
+
+    .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+      cursor: pointer;
+      z-index: 50;
+      color: #073B3A;
+    }
+
+    .nav-arrow.left { left: 10px; }
+    .nav-arrow.right { right: 10px; }
+
+    .dots {
+      text-align: center;
+      margin-top: 1rem;
+      z-index: 20;
+      position: relative;
+    }
+
+    .dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin: 0 5px;
+      background-color: #999;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background-color: #333;
+    }
+  </style>
+</head>
+<body class="relative min-h-screen">
+
+<!-- ✅ الهيدر والنافبار -->
+<nav class="relative z-50 flex justify-between items-center py-4 px-8 border-b-2 border-gray-300 border-opacity-30">
+  <div class="flex items-center space-x-2">
+    <img src="/images/logo.png" alt="شعار WELL-BING" class="w-8 h-8">
+    <div class="flex flex-col items-start">
+      <span class="font-serif text-lg font-bold text-[#073B3A]">WELL-BEING</span>
+      <span class="font-serif text-sm text-[#073B3A]">WITH COACH SABAH</span>
+    </div>
+  </div>
+
+  <ul class="flex space-x-8 text-[#073B3A]">
+    <li><a href="index.html" class="hover:border-b-2 hover:border-gray-800">Home</a></li>
+    <li><a href="aboutme.html" class="hover:border-b-2 hover:border-gray-800">About</a></li>
+    <li><a href="services.html" class="hover:border-b-2 hover:border-gray-800">Our Services</a></li>
+    <li><a href="book.html" class="hover:border-b-2 hover:border-gray-800">My Book</a></li>
+    <li><a href="client.html" class="border-b-2 pb-1 border-[#073B3A] font-semibold">Client's Testimony</a></li>
+    <li><a href="contactus.html" class="hover:border-b-2 hover:border-gray-800">Contact Us</a></li>
+  </ul>
+</nav>
+
+ <!-- البلورات -->
+  <div class="absolute inset-0 z-0" id="ball-container">
+    <img src="/images/blue.png" class="ball medium" style="top: 18%; left: 18%;">
+    <img src="/images/blue.png" class="ball small" style="top: 14%; left: 33%;">
+    <img src="/images/blue.png" class="ball medium" style="top: 45%; left: 10%;">
+    <img src="/images/blue.png" class="ball small" style="top: 80%; left: 22%;">
+    <img src="/images/blue.png" class="ball medium" style="top: 20%; right: 20%;">
+
+    <img src="/images/blue.png" class="ball medium" style="top: 82%; right: 30%;">
+    <img src="/images/blue.png" class="ball small" style="top: 30%; right: 5%;">
+
+
+    <img src="/images/yello.png" class="ball small" style="top: 15%; right: 38%;">
+ 
+    <img src="/images/yello.png" class="ball medium" style="top: 90%; left: 8%;">
+    <img src="/images/yello.png" class="ball medium" style="bottom: 5%; right: 45%;">
+    <img src="/images/yello.png" class="ball small" style="top: 70%; right: 8%;">
+
+    <img src="/images/yello.png" class="ball small" style="top: 35%; right: 33%;">
+
+    <!-- بلورات مخصصة للـ About -->
+  
+    
+  
+ 
+ 
+    
+  </div>
+
+
+<!-- ✅ العنوان -->
+<h2 class="text-center text-3xl text-[#073B3A] mt-12 font-serif z-30 relative">Clint’s Testimony</h2>
+
+<!-- ✅ السلايدر -->
+<div class="slider mt-8">
+  <div class="nav-arrow left" onclick="prevSlide()">
+    <i class="fas fa-chevron-left"></i>
+  </div>
+
+  <div class="slide">
+    <img src="/images/1.png" alt="Testimony 1" >
+  </div>
+  <div class="slide active">
+    <img src="/images/2.png" alt="Testimony 2" class="active">
+  </div>
+  <div class="slide">
+    <img src="/images/3.png" alt="Testimony 3">
+  </div>
+
+  <div class="nav-arrow right" onclick="nextSlide()">
+    <i class="fas fa-chevron-right"></i>
+  </div>
+</div>
+
+<!-- ✅ النقاط -->
+<div class="dots" id="dots-container">
+  <span class="dot" onclick="goToSlide(0)"></span>
+  <span class="dot active" onclick="goToSlide(1)"></span>
+  <span class="dot" onclick="goToSlide(2)"></span>
+</div>
+
+<!-- ✅ سكربت التحكم -->
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const images = document.querySelectorAll('.slide img');
+  const dots = document.querySelectorAll('.dot');
+  let current = 1;
+
+  function updateSlides() {
+    slides.forEach((slide, index) => {
+      slide.classList.remove('active');
+      images[index].classList.remove('active');
+      dots[index].classList.remove('active');
+      if (index === current) {
+        slide.classList.add('active');
+        images[index].classList.add('active');
+        dots[index].classList.add('active');
+      }
+    });
+  }
+
+  function nextSlide() {
+    current = (current + 1) % slides.length;
+    updateSlides();
+  }
+
+  function prevSlide() {
+    current = (current - 1 + slides.length) % slides.length;
+    updateSlides();
+  }
+
+  function goToSlide(index) {
+    current = index;
+    updateSlides();
+  }
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const dropdownBtn = document.querySelector('.dropdown-button');
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+
+    dropdownBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dropdownMenu.classList.toggle('active');
+      dropdownBtn.classList.toggle('active');
+    });
+
+    document.addEventListener('click', () => {
+      dropdownMenu.classList.remove('active');
+      dropdownBtn.classList.remove('active');
+    });
+
+    dropdownMenu.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+  });
+</script>
+
+
+</body>
+</html>
